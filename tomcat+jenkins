@@ -45,4 +45,21 @@ delete row 21 and 22
 Neither the JAVA_HOME nor the JRE_HOME environment variable is defined
 At least one of these environment variable
 
-install java--
+----install java--
+sudo yum install java-17-amazon-corretto -y
+------to start the Tom cat server 
+ ./bin/startup.sh
+------Tomcat started---------
+
+now take the ip address of server and port 8080
+http://3.110.196.185:8080/
+-----tom cat UI will open----- note when we are using two server we can use same port 8080 but when we have use one server jenkins port we can change
+ls
+cd conf/
+ls
+vim  tomcat-users.xml
+password will display
+
+select the manager app from the UI
+provide the userid and password
+
