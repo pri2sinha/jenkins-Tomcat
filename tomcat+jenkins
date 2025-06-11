@@ -1,0 +1,25 @@
+create Jenkins server 
+vim jenkins.sh 
+sh jenkins.sh
+port :ip public addrees ---8080
+cat /var/lib/jenkins/secrets/initialAdminPassword
+get the password
+set up done
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+Set up for Tom cat
+Put------ dlcdn.apache.org-----  as Url
+Tomcat>tomcat-9>v9.0.105>bin/ >apache-tomcat-9.0.105.tar.gz -----copy the address of this
+put it in server------- wget copy the address of this
+ls 
+tar file will come in red---
+untar by this command------tar -xvf apache-tomcat-9.0.105.tar.gz
+
+
+
