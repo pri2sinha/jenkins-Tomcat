@@ -13,14 +13,14 @@ set up done
 Set up for Tom cat
 Put------ dlcdn.apache.org-----  as Url
 Tomcat>tomcat-9>v9.0.105>bin/ >apache-tomcat-9.0.105.tar.gz -----copy the address of this
-put it in server------- wget copy the address of this
+put it in server------- wget copy the address of this( root)
 ls 
 tar file will come in red---
-untar by this command------tar -xvf apache-tomcat-9.0.105.tar.gz
-cd apache-tomcat-9.0.105/
-ls
+untar by this command------tar -xvf apache-tomcat-9.0.105.tar.gz----([root@tomcat ~]# tar -xvf apache-tomcat-9.0.105.tar.gz)
+cd apache-tomcat-9.0.105/---- (get inside apache-tomcat-9.0.105)
+ls----(root@tomcat apache-tomcat-9.0.105)-------- conf 
 cd conf/
-ls
+ls-----tomcat-users.xml
 vim  tomcat-users.xml
 set the user name and password for tom cat 
 
@@ -29,7 +29,8 @@ set the user name and password for tom cat
   <user username="tomcat" password="priyanka123" roles="manager-gui, manager-script"/>
 cd ..
  ls
-cd manager/
+[root@tomcat apache-tomcat-9.0.105]# cd webapps/
+[root@tomcat webapps]# ls
 [root@tomcat webapps]# cd manager/
 [root@tomcat manager]# ls
 css  images  index.jsp  META-INF  status.xsd  WEB-INF  xform.xsl
@@ -62,4 +63,49 @@ password will display
 
 select the manager app from the UI
 provide the userid and password
+
+
+now setup jenkins and put the pipeline:
+
+pipeline {
+    agent any
+    tools {
+    maven 'maven-3.9.6'  // the same name you gave in the UI
+    }
+    stages {
+        stage('checkout') {
+            steps {
+                git 'https://github.com/Venkatareddy1714/jenkins-java-project123.git'
+            }
+        }
+        stage('build') {
+            steps {
+                sh 'mvn compile'
+            }
+        }
+        stage('test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+        stage('artifact') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage('deploy') {
+            steps {
+                deploy adapters: [
+                    tomcat9(
+                        credentialsId: '376f31d8-ded4-4878-834f-2dd60664d96f',
+                        path: '',
+                        url: 'http://13.233.98.71:8080/'
+                    )
+                ],
+                contextPath: 'netflix',
+                war: 'target/*.war'
+            }
+        }
+    }
+}
 
