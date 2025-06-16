@@ -1,0 +1,23 @@
+We created an automated CI/CD pipeline using Jenkins and Tomcat:
+
+Installed Jenkins on a server to build and deploy code automatically.
+
+Installed Tomcat on another (or same) server to host our application.
+
+Set up user access in Tomcat so Jenkins can deploy there.
+
+Installed Java, which is required to run both Jenkins and Tomcat.
+
+Wrote a Jenkins pipeline that:
+
+Pulls code from GitHub
+
+Builds the code using Maven
+
+Runs tests
+
+Packages the app into a .war file
+
+Deploys that .war to Tomcat using provided credentials
+
+In short: Whenever you push code, Jenkins builds and automatically deploys your app to the Tomcat server.
